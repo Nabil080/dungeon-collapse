@@ -1,9 +1,9 @@
 class_name Consts
 extends RefCounted
 
-const TILE_SIZE : int = 16
-const GRID_WIDTH : int = 20
-const GRID_HEIGHT : int = 15
+const TILE_SIZE := Vector2i(16, 16)
+const TILE_CENTER := Vector2i(8, 8)
+const GRID_SIZE := Vector2i(20, 15)
 
 enum TileType { FLOOR, WALL, DOOR, EMPTY }
 

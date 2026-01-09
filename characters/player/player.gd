@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 
 # States
@@ -6,11 +7,7 @@ var current_state := States.IDLE
 
 
 # Movement
-# Logical grid position (source of truth)
-var tile_pos : Vector2i
-
-# Visual movement
-var move_duration := 0.25
+@export_range(0, 1, 0.05) var move_duration := 0.25
 var movement_tween : Tween
 
 # References
@@ -18,10 +15,9 @@ var movement_tween : Tween
 
 
 func _ready() -> void:
-	# Initialize tile position from starting world position
-	tile_pos = Vector2i(position) / Consts.GRID_SIZE
-	position = Vector2(tile_pos * Consts.GRID_SIZE + Consts.TILE_CENTER)
-
+	pass
+	
+	
 func _physics_process(_delta: float) -> void:
 	match current_state:
 		States.IDLE:
@@ -50,22 +46,20 @@ func _process_walking() -> void:
 
 ## Check if the direction is walkable and walks toward it if possible
 func _try_start_walking(direction: Vector2i) -> void:
-	# check if can move
-	if not _can_move_to(tile_pos + direction):
+	# Check if can move
+	if not _can_move_to(direction):
 		return
 	
-	# change sprite orientation and animation
+	# Change sprite orientation and animation
 	if direction.x: 
 		animated_sprite_2d.flip_h = (direction.x < 0)
-	animated_sprite_2d.play("walking")
-	# commit logical movement immediately
-	tile_pos += direction
+	#animated_sprite_2d.play("walking")
 
-	# change state
+	# Change state
 	current_state = States.WALKING
 
-	# compute target position
-	var target_position := Vector2(tile_pos * Consts.GRID_SIZE + Consts.TILE_CENTER)
+	# Compute target position
+	var target_position := position + Vector2(direction * Consts.TILE_SIZE)
 
 	# stop previous tween if any
 	if movement_tween:
@@ -80,19 +74,40 @@ func _try_start_walking(direction: Vector2i) -> void:
 		move_duration
 	).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
 
-	# tween ended change state
+	# Tween ended change state
 	movement_tween.finished.connect(_stop_walking)
 
 
 func _stop_walking() -> void:
-	# note: might want to snap to exact pixel position
+	# Note: might want to snap to exact pixel position
 	current_state = States.IDLE
-	animated_sprite_2d.play("idle")
+	#animated_sprite_2d.play("idle")
 
+
+# Raycasts
+@onready var ray_up: RayCast2D = $Rays/Up
+@onready var ray_right: RayCast2D = $Rays/Right
+@onready var ray_down: RayCast2D = $Rays/Down
+@onready var ray_left: RayCast2D = $Rays/Left
 
 ## Grid validation (not implemented)
-func _can_move_to(target_tile: Vector2i) -> bool:
-	# TODO:
-	# - check wall
-	# - check floor exists
-	return true
+func _can_move_to(direction: Vector2i) -> bool:
+	var ray : RayCast2D
+
+	match direction:
+		Vector2i.RIGHT:
+			ray = ray_right
+		Vector2i.LEFT:
+			ray = ray_left
+		Vector2i.UP:
+			ray = ray_up
+		Vector2i.DOWN:
+			ray = ray_down
+		_:
+			return false
+
+	# Ensure raycast is updated
+	ray.force_raycast_update()
+	print(ray)
+	# If ray hits something, it's a wall
+	return not ray.is_colliding()

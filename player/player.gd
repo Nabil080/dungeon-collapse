@@ -43,7 +43,7 @@ func _process_input() -> void:
 ## Returns *true* if the movement was made
 func _try_move(direction: Vector2i) -> bool:
 	var target_cell := grid_pos + direction
-	if board_controller.is_walkable(target_cell):
+	if board_controller.get_tile_def(target_cell).walkable:
 		_move(board_controller.map_to_global(target_cell))
 		return true
 		
@@ -53,10 +53,18 @@ func _try_move(direction: Vector2i) -> bool:
 ## Moves toward world coordinates, using a tween of [param duration] seconds
 func _move(target_position: Vector2, duration := 0.2) -> void:
 	current_state = States.MOVING
+	board_controller.on_tile_exited(self, grid_pos)
 
 	var tween : Tween = create_tween()
 	tween.tween_property(
 		self, "position", target_position, duration
 	).set_ease(Tween.EASE_IN_OUT)
 
-	tween.finished.connect(func () -> void: current_state = States.IDLE)
+	tween.finished.connect(_stop_moving)
+
+
+## Player stops moving and the entered tile is processed
+## WARNING: Might want to call the tile processing in the turn director
+func _stop_moving() -> void:
+	current_state = States.IDLE
+	board_controller.on_tile_entered(self, grid_pos)

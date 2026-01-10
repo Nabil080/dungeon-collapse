@@ -32,9 +32,20 @@ func global_to_centered(global_pos: Vector2) -> Vector2:
 #endregion
 #region Tiles
 
-## returns true if [param cell] is walkable based on the tile custom data 'walkable'
-func is_walkable(cell: Vector2i) -> bool:
+## Returns the [TileDefinition] of the cell
+func get_tile_def(cell: Vector2i) -> TileDefinition:
 	var data := floor_tilemap.get_cell_tile_data(cell)
-	return data.get_custom_data("walkable") if data else false
+	return data.get_custom_data("tile_def") if data else null
+
+
+## Calls [method TileDefinition.on_enter] for the given [param cell]
+func on_tile_entered(actor: Variant, cell: Vector2i) -> void:
+	print("Entering tile ", cell)
+	get_tile_def(cell).on_enter(actor, self)
+	
+## Calls [method TileDefinition.on_exit] for the given [param cell]
+func on_tile_exited(actor: Variant, cell: Vector2i) -> void:
+	print("Exiting tile ", cell)
+	get_tile_def(cell).on_exit(actor, self)
 
 #endregion

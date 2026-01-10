@@ -13,6 +13,7 @@ signal died
 
 # onready
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var animated_sprite_2d: AnimatedSprite2D = $Visuals/AnimatedSprite2D
 
 
 # World / Grid positions
@@ -59,6 +60,7 @@ func _process_input() -> void:
 	# Only move on one axis if both inputs
 	if direction.x:
 		direction.y = 0
+		animated_sprite_2d.flip_h = direction.x == -1
 
 	_try_move(direction)
 
@@ -95,6 +97,7 @@ func _commit_move(target_cell: Vector2i) -> void:
 
 ## Animates movement only
 func _animate_move(target_position: Vector2, duration := 0.2) -> void:
+	animation_player.play("moving")
 	var tween := create_tween()
 	tween.tween_property(
 		self, "world_position", target_position, duration
@@ -102,11 +105,13 @@ func _animate_move(target_position: Vector2, duration := 0.2) -> void:
 
 	tween.finished.connect(func ()->void:
 		action_resolved.emit()
-
+		
 		if death_requested:
 			_play_death()
+		else:
+			_play_idle()
 	)
-
+	
 
 ## Called by tiles to request player death (logic only)
 func request_death() -> void:
@@ -116,25 +121,11 @@ func request_death() -> void:
 ## Plays the appropriate death presentation
 func _play_death() -> void:
 	dying.emit()
-	_play_fall_animation()
+	animation_player.play("falling")
+	await animation_player.animation_finished
+	died.emit()
 
-
-## Default death animation (void)
-func _play_fall_animation() -> void:
-	const FALL_DURATION := 1.0
-	const NUMBER_OF_SPINS := 2.0
-
-	var tween := create_tween()
-	tween.set_parallel(true)
-
-	tween.tween_property(
-		self, "rotation", rotation + TAU * NUMBER_OF_SPINS, FALL_DURATION
-	).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
-
-	tween.tween_property(
-		self, "scale", Vector2.ZERO, FALL_DURATION
-	).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
-
-	tween.finished.connect(func ()->void:
-		died.emit()
-	)
+func _play_idle() -> void:
+	animation_player.play("RESET")
+	await animation_player.animation_finished
+	animation_player.play("idle")

@@ -1,30 +1,32 @@
 class_name Player
 extends Node2D
 
-# enums
-enum States { IDLE, MOVING, FALLING, WAITING }
+# signals
+signal action_started
+signal action_resolved
+signal dying
+signal died
 
-# attributes
-var current_state : States = States.IDLE
+# exports
+@export var board_controller: BoardController
+@export var turn_manager: TurnManager
 
-# onready
-@onready var board_controller: BoardController = $"../BoardController"
 
 var grid_pos : Vector2i:
 	get: return board_controller.global_to_map(position)
 
 
 func _ready() -> void:
+	assert(board_controller, "Board controller reference missing from Player")
+	assert(turn_manager, "Turn manager reference missing from Player")
 	position = board_controller.global_to_centered(position)
 
 
-## Calls the appropiate functions depending on the current state
+## Calls the appropiate functions depending on the current state and turn
 func _physics_process(_delta: float) -> void:
-	match current_state:
-		States.IDLE: _process_input() # movement
-		States.MOVING: pass
-		States.WAITING, _: pass
-
+	if turn_manager.current_state != turn_manager.States.PLAYER_TURN:
+		return
+	_process_input()
 
 ## Listens to the player movement input
 func _process_input() -> void:
@@ -52,7 +54,8 @@ func _try_move(direction: Vector2i) -> bool:
 
 ## Moves toward world coordinates, using a tween of [param duration] seconds
 func _move(target_position: Vector2, duration := 0.2) -> void:
-	current_state = States.MOVING
+	# Start moving
+	action_started.emit()
 	board_controller.on_tile_exited(self, grid_pos)
 
 	var tween : Tween = create_tween()
@@ -60,13 +63,9 @@ func _move(target_position: Vector2, duration := 0.2) -> void:
 		self, "position", target_position, duration
 	).set_ease(Tween.EASE_IN_OUT)
 
-	tween.finished.connect(_stop_moving)
-
-
-## Player stops moving and the entered tile is processed
-## WARNING: Might want to call the tile processing in the turn director
-func _stop_moving() -> void:
-	current_state = States.IDLE
+	# Finished moving
+	await tween.finished
+	action_resolved.emit()
 	board_controller.on_tile_entered(self, grid_pos)
 
 
@@ -74,8 +73,10 @@ func _stop_moving() -> void:
 func fall()-> void:
 	const FALL_DURATION := 1.0
 	const NUMBER_OF_SPINS := 2.0
+	
+	# Start falling
+	dying.emit()
 	print("Player is falling")
-	current_state = States.FALLING
 	
 	var tween := create_tween()
 	tween.set_parallel(true)
@@ -88,11 +89,7 @@ func fall()-> void:
 		self, "scale", Vector2.ZERO, FALL_DURATION
 	).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 	
+	# Finished falling
 	await tween.finished
-	on_death()
-
-
-## Restarts the level
-func on_death()-> void:
-	"Player is dead, restarting level"
-	get_tree().reload_current_scene()
+	print("Player died")
+	died.emit()

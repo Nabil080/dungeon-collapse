@@ -1,19 +1,19 @@
 class_name BoardController
 extends Node
 
+## Interacts with the game grid (Floor tilemap) [br]
+## Converts from world coordinates to grid coordinates [br]
+## Returns TileDefinitions of a given cell [br]
+## Calls the tiles lifecycle hooks [br]
+
 const TILE_SIZE := Vector2i(16, 16)
 const TILE_CENTER := Vector2i(8, 8)
 
 @export var floor_tilemap : TileMapLayer
 
-#region testing
+func _ready() -> void:
+	assert(floor_tilemap, "Tilemap reference missing from BoardController")
 
-func _process(_delta: float) -> void:
-	#var pos := get_viewport().get_mouse_position()
-	#print(is_walkable(global_to_map(pos)))
-	pass
-	
-#endregion
 
 #region position
 
@@ -40,12 +40,12 @@ func get_tile_def(cell: Vector2i) -> TileDefinition:
 
 ## Calls [method TileDefinition.on_enter] for the given [param cell]
 func on_tile_entered(actor: Node, cell: Vector2i) -> void:
-	print("Entering tile ", cell)
+	#print("Entering tile ", cell)
 	get_tile_def(cell).on_enter(actor, self)
 	
 ## Calls [method TileDefinition.on_exit] for the given [param cell]
 func on_tile_exited(actor: Node, cell: Vector2i) -> void:
-	print("Exiting tile ", cell)
+	#print("Exiting tile ", cell)
 	get_tile_def(cell).on_exit(actor, self)
 
 #endregion

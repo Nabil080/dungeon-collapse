@@ -1,0 +1,59 @@
+[gd_scene load_steps=11 format=3 uid="uid://cm3v41y2p75o5"]
+
+[ext_resource type="Script" uid="uid://bw7oillukq22i" path="res://player/player.gd" id="1_hg6s5"]
+[ext_resource type="Texture2D" uid="uid://bdkptqrnbyen5" path="res://assets/2D Pixel Dungeon Asset Pack/Character_animation/priests_idle/priest2/v1/priest2_v1_1.png" id="2_8t03j"]
+[ext_resource type="Texture2D" uid="uid://b41ha1bv453ab" path="res://assets/2D Pixel Dungeon Asset Pack/Character_animation/priests_idle/priest2/v1/priest2_v1_2.png" id="3_2ieo8"]
+[ext_resource type="Texture2D" uid="uid://casb387pt2wmf" path="res://assets/2D Pixel Dungeon Asset Pack/Character_animation/priests_idle/priest2/v1/priest2_v1_3.png" id="4_ebec5"]
+[ext_resource type="Texture2D" uid="uid://betcbt6emsfb2" path="res://assets/2D Pixel Dungeon Asset Pack/Character_animation/priests_idle/priest2/v1/priest2_v1_4.png" id="5_yllr7"]
+[ext_resource type="Texture2D" uid="uid://cvq6k5lcrouyf" path="res://assets/2D Pixel Dungeon Asset Pack/Character_animation/priests_idle/priest2/v2/priest2_v2_1.png" id="6_kb6p2"]
+[ext_resource type="Texture2D" uid="uid://cux3y608mcwv4" path="res://assets/2D Pixel Dungeon Asset Pack/Character_animation/priests_idle/priest2/v2/priest2_v2_2.png" id="7_wodsf"]
+[ext_resource type="Texture2D" uid="uid://to0vidvbckun" path="res://assets/2D Pixel Dungeon Asset Pack/Character_animation/priests_idle/priest2/v2/priest2_v2_3.png" id="8_32hag"]
+[ext_resource type="Texture2D" uid="uid://2c1ll1gmmlxk" path="res://assets/2D Pixel Dungeon Asset Pack/Character_animation/priests_idle/priest2/v2/priest2_v2_4.png" id="9_tqiix"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_thk7u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_8t03j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_2ieo8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ebec5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_yllr7")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_kb6p2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_wodsf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_32hag")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_tqiix")
+}],
+"loop": true,
+"name": &"selected",
+"speed": 5.0
+}]
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_hg6s5")
+
+[node name="Visuals" type="CanvasGroup" parent="."]
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals"]
+sprite_frames = SubResource("SpriteFrames_thk7u")
+animation = &"idle"
+autoplay = "idle"

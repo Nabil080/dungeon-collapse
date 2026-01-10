@@ -48,4 +48,9 @@ func on_tile_exited(actor: Node, cell: Vector2i) -> void:
 	#print("Exiting tile ", cell)
 	get_tile_def(cell).on_exit(actor, self)
 
+
+func change_tile(cell: Vector2i, atlas_coords: Vector2i)-> void:
+	print("Changing cell at ", cell)
+	floor_tilemap.set_cell(cell, 0, atlas_coords)
+	
 #endregion

@@ -12,14 +12,23 @@ signal died
 @export var turn_manager: TurnManager
 
 
+# World/Grid positions
+var world_position : Vector2:
+	set(val):
+		world_position = val
+		grid_pos = board_controller.global_to_map(world_position)
+		position = val # real update
 var grid_pos : Vector2i:
-	get: return board_controller.global_to_map(position)
+	set(val):
+		previous_grid_pos = grid_pos
+		grid_pos = val
+var previous_grid_pos : Vector2i
 
 
 func _ready() -> void:
 	assert(board_controller, "Board controller reference missing from Player")
 	assert(turn_manager, "Turn manager reference missing from Player")
-	position = board_controller.global_to_centered(position)
+	world_position = board_controller.global_to_centered(position)
 
 
 ## Calls the appropiate functions depending on the current state and turn
@@ -60,7 +69,7 @@ func _move(target_position: Vector2, duration := 0.2) -> void:
 
 	var tween : Tween = create_tween()
 	tween.tween_property(
-		self, "position", target_position, duration
+		self, "world_position", target_position, duration
 	).set_ease(Tween.EASE_IN_OUT)
 
 	# Finished moving

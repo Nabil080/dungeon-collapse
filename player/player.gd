@@ -18,6 +18,7 @@ func _ready() -> void:
 	position = board_controller.global_to_centered(position)
 
 
+## Calls the appropiate functions depending on the current state
 func _physics_process(_delta: float) -> void:
 	match current_state:
 		States.IDLE: _process_input() # movement
@@ -41,14 +42,12 @@ func _process_input() -> void:
 ## Tries to move in the given [param direction] [br]
 ## Returns *true* if the movement was made
 func _try_move(direction: Vector2i) -> bool:
-	print("============")
-	print("Trying to move in this direction : ", direction)
-	var target_grid_position := grid_pos + direction
-	# TODO: wall check
-	
-	# Force move since there was no error
-	_move(board_controller.map_to_global(target_grid_position))
-	return true
+	var target_cell := grid_pos + direction
+	if board_controller.is_walkable(target_cell):
+		_move(board_controller.map_to_global(target_cell))
+		return true
+		
+	return false
 
 
 ## Moves toward world coordinates, using a tween of [param duration] seconds

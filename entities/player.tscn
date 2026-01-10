@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cm3v41y2p75o5"]
+[gd_scene load_steps=13 format=3 uid="uid://cm3v41y2p75o5"]
 
 [ext_resource type="Script" uid="uid://bw7oillukq22i" path="res://entities/player.gd" id="1_hg6s5"]
 [ext_resource type="Texture2D" uid="uid://bdkptqrnbyen5" path="res://assets/2D Pixel Dungeon Asset Pack/Character_animation/priests_idle/priest2/v1/priest2_v1_1.png" id="2_8t03j"]
@@ -47,6 +47,14 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_ef06p"]
+resource_name = "falling"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tjdhl"]
+_data = {
+&"falling": SubResource("Animation_ef06p")
+}
+
 [node name="Player" type="Node2D"]
 script = ExtResource("1_hg6s5")
 
@@ -57,3 +65,8 @@ metadata/_edit_group_ = true
 sprite_frames = SubResource("SpriteFrames_thk7u")
 animation = &"idle"
 autoplay = "idle"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_tjdhl")
+}

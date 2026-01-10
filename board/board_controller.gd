@@ -39,12 +39,12 @@ func get_tile_def(cell: Vector2i) -> TileDefinition:
 
 
 ## Calls [method TileDefinition.on_enter] for the given [param cell]
-func on_tile_entered(actor: Variant, cell: Vector2i) -> void:
+func on_tile_entered(actor: Node, cell: Vector2i) -> void:
 	print("Entering tile ", cell)
 	get_tile_def(cell).on_enter(actor, self)
 	
 ## Calls [method TileDefinition.on_exit] for the given [param cell]
-func on_tile_exited(actor: Variant, cell: Vector2i) -> void:
+func on_tile_exited(actor: Node, cell: Vector2i) -> void:
 	print("Exiting tile ", cell)
 	get_tile_def(cell).on_exit(actor, self)
 

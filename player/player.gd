@@ -2,7 +2,7 @@ class_name Player
 extends Node2D
 
 # enums
-enum States { IDLE, MOVING, WAITING }
+enum States { IDLE, MOVING, FALLING, WAITING }
 
 # attributes
 var current_state : States = States.IDLE
@@ -68,3 +68,31 @@ func _move(target_position: Vector2, duration := 0.2) -> void:
 func _stop_moving() -> void:
 	current_state = States.IDLE
 	board_controller.on_tile_entered(self, grid_pos)
+
+
+## Makes the [Player] fall and die
+func fall()-> void:
+	const FALL_DURATION := 1.0
+	const NUMBER_OF_SPINS := 2.0
+	print("Player is falling")
+	current_state = States.FALLING
+	
+	var tween := create_tween()
+	tween.set_parallel(true)
+	# Rotate
+	tween.tween_property(
+		self, "rotation", rotation + TAU * NUMBER_OF_SPINS, FALL_DURATION
+	).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	# Scale down
+	tween.tween_property(
+		self, "scale", Vector2.ZERO, FALL_DURATION
+	).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	
+	await tween.finished
+	on_death()
+
+
+## Restarts the level
+func on_death()-> void:
+	"Player is dead, restarting level"
+	get_tree().reload_current_scene()

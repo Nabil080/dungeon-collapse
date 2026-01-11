@@ -9,7 +9,6 @@ const TILE_SIZE := Vector2i(16, 16)
 const TILE_CENTER := Vector2i(8, 8)
 
 @export var floor_tilemap: TileMapLayer
-@export var void_atlas_coords := Vector2i(9, 6)
 
 var pending_collapses: Array[Vector2i] = []
 
@@ -63,7 +62,7 @@ func on_tile_entered(actor: Node, cell: Vector2i) -> void:
 func resolve_environment() -> void:
 	# Crumbling tiles
 	for cell in pending_collapses:
-		change_tile(cell, void_atlas_coords)
+		change_tile(cell, VoidTile.atlas_coords)
 
 	pending_collapses.clear()
 

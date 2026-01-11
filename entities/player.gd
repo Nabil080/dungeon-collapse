@@ -83,12 +83,13 @@ func _commit_move(target_cell: Vector2i) -> void:
 
 	# Logical movement
 	previous_grid_pos = grid_pos
-	board_controller.on_tile_exited(self, previous_grid_pos)
-
 	grid_pos = target_cell
+
+	# Tiles queue events
+	board_controller.on_tile_exited(self, previous_grid_pos)
 	board_controller.on_tile_entered(self, grid_pos)
 
-	# Environment resolution (crumbling, later conveyors, etc.)
+	# Environment resolution (crumbling, conveyors, etc)
 	board_controller.resolve_environment()
 
 	# Visual movement ALWAYS happens
@@ -119,9 +120,9 @@ func request_death() -> void:
 
 
 ## Plays the appropriate death presentation
-func _play_death() -> void:
+func _play_death(animation_name := "falling") -> void:
 	dying.emit()
-	animation_player.play("falling")
+	animation_player.play(animation_name)
 	await animation_player.animation_finished
 	died.emit()
 

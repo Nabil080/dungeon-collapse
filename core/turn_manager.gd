@@ -56,10 +56,10 @@ func _enter_state(value: States) -> void:
 			pass # Player logic already ran
 
 		States.ENVIRONMENT_RESOLVING:
-			pass # Reserved for later
+			pass
 
 		States.ENEMY_TURN:
-			pass # Enemy turn (future)
+			pass
 
 		States.PAUSED:
 			pass # Death / freeze

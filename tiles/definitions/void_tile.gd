@@ -1,7 +1,7 @@
 class_name VoidTile
 extends TileDefinition
 
-const atlas_coords := Vector2i(9, 6)
+const atlas_coords := Vector2i(13, 0)
 
 func _init() -> void:
 	walkable = true # stepping on it is allowed

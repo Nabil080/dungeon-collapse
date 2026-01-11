@@ -11,6 +11,7 @@ const TILE_CENTER := Vector2i(8, 8)
 @export var floor_tilemap: TileMapLayer
 
 var pending_collapses: Array[Vector2i] = []
+var forced_moves: Array[ConveyorTile.Movement] = []
 
 
 func _ready() -> void:
@@ -36,7 +37,12 @@ func global_to_centered(global_pos: Vector2) -> Vector2:
 ## Returns the [TileDefinition] of the cell
 func get_tile_def(cell: Vector2i) -> TileDefinition:
 	var data := floor_tilemap.get_cell_tile_data(cell)
-	return data.get_custom_data("tile_def") if data else null
+	return data.get_custom_data("tile_def")
+
+## Returns the custom_data [param data_name] of the cell
+func get_tile_custom_data(cell: Vector2i, data_name: String) -> Variant:
+	var data := floor_tilemap.get_cell_tile_data(cell)
+	return data.get_custom_data(data_name)
 
 
 ## Calls [TileDefinition.on_exit] for the given [param cell]
@@ -63,10 +69,16 @@ func resolve_environment() -> void:
 	# Crumbling tiles
 	for cell in pending_collapses:
 		change_tile(cell, VoidTile.atlas_coords)
-
 	pending_collapses.clear()
 
-	# Conveyors (future)
+	# Conveyors
+	print("======== Conveyers =========")
+	print(forced_moves.size())
+	while forced_moves:
+		var movement : ConveyorTile.Movement = forced_moves.pop_front()
+		if movement.actor.has_method("_try_move"):
+			movement.actor.call("_try_move", movement.direction)
+	
 	# Buttons / Toggleables (future)
 	# Portals (future)
 
@@ -75,13 +87,18 @@ func resolve_environment() -> void:
 
 #region Mutation Requests
 
+
 func request_collapse(cell: Vector2i) -> void:
 	if not pending_collapses.has(cell):
 		pending_collapses.append(cell)
 
-
+# Swapping collapsing to void
 func change_tile(cell: Vector2i, atlas_coords: Vector2i) -> void:
 	floor_tilemap.set_cell(cell, 0, atlas_coords, 0)
 	floor_tilemap.update_internals()
+
+
+func request_forced_move(movement: ConveyorTile.Movement) -> void:
+	forced_moves.append(movement)
 
 #endregion

@@ -104,15 +104,14 @@ func _animate_move(target_position: Vector2, duration := 0.2) -> void:
 		self, "world_position", target_position, duration
 	).set_ease(Tween.EASE_IN_OUT)
 
-	tween.finished.connect(func ()->void:
-		action_resolved.emit()
-		
-		if death_requested:
-			_play_death()
-		else:
-			_play_idle()
-	)
+	await tween.finished
+	action_resolved.emit()
 	
+	if death_requested:
+		_play_death()
+	else:
+		_play_idle()
+
 
 ## Called by tiles to request player death (logic only)
 func request_death() -> void:

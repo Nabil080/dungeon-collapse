@@ -80,6 +80,8 @@ func _try_move(direction: Vector2i) -> bool:
 ## Commits the move logically, then animates
 func _commit_move(target_cell: Vector2i) -> void:
 	action_started.emit()
+	# Environment start of turn resolution (Alternating tiles..)
+	board_controller.start_of_turn()
 
 	# Logical movement
 	previous_grid_pos = grid_pos
@@ -89,10 +91,10 @@ func _commit_move(target_cell: Vector2i) -> void:
 	board_controller.on_tile_exited(self, previous_grid_pos)
 	board_controller.on_tile_entered(self, grid_pos)
 
-	# Environment resolution (crumbling, conveyors, etc)
+	# Environment resolution (crumbling, conveyors..)
 	board_controller.resolve_environment()
 
-	# Visual movement ALWAYS happens
+	# Visual movement
 	_animate_move(board_controller.map_to_global(grid_pos))
 
 

@@ -50,10 +50,10 @@ func _enter_state(value: States) -> void:
 	match state:
 
 		States.PLAYER_TURN:
-			pass # Input allowed
+			pass
 
 		States.PLAYER_RESOLVING:
-			pass # Player logic already ran
+			pass
 
 		States.ENVIRONMENT_RESOLVING:
 			pass
@@ -62,4 +62,4 @@ func _enter_state(value: States) -> void:
 			pass
 
 		States.PAUSED:
-			pass # Death / freeze
+			pass # Death / pause

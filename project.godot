@@ -13,6 +13,7 @@ config_version=5
 config/name="Dungeon Collapse"
 run/main_scene="uid://dbb1d3iiut6tg"
 config/features=PackedStringArray("4.5", "GL Compatibility")
+config/icon="res://icon.svg"
 
 [debug]
 

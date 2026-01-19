@@ -64,20 +64,30 @@ func on_tile_entered(actor: Node, cell: Vector2i) -> void:
 
 #region Environment Resolution
 
+func start_of_turn() -> void:
+	# Alternating tiles
+	for cell in floor_tilemap.get_used_cells():
+		var tile_def : = get_tile_def(cell)
+		if tile_def is EnabledTile: change_tile(cell, TileDefinition.get_atlas_coords(TileDefinition.Type.DISABLED))
+		elif tile_def is DisabledTile: change_tile(cell, TileDefinition.get_atlas_coords(TileDefinition.Type.ENABLED))
+	print("Done 1")
+
+
 ## Called once per action
 func resolve_environment() -> void:
 	# Crumbling tiles
 	for cell in pending_collapses:
-		change_tile(cell, VoidTile.atlas_coords)
+		change_tile(cell, TileDefinition.get_atlas_coords(TileDefinition.Type.VOID))
 	pending_collapses.clear()
 
-	# Conveyors
+	# Conveyors tiles
 	print("======== Conveyers =========")
 	print(forced_moves.size())
 	while forced_moves:
 		var movement : ConveyorTile.Movement = forced_moves.pop_front()
 		if movement.actor.has_method("_try_move"):
 			movement.actor.call("_try_move", movement.direction)
+	
 	
 	# Buttons / Toggleables (future)
 	# Portals (future)

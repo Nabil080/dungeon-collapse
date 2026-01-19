@@ -7,4 +7,4 @@ func _on_area_entered(area: Area2D) -> void:
 		print("Cannot exit yet")
 		return
 	print("Exiting by ladder")
-	get_tree().reload_current_scene()
+	GameManager.next_level.call_deferred()

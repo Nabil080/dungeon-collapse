@@ -1,54 +1,53 @@
-[gd_scene load_steps=25 format=4 uid="uid://dbb1d3iiut6tg"]
+[gd_scene load_steps=24 format=4 uid="uid://dwt70uqo7qwg6"]
 
-[ext_resource type="Script" uid="uid://c2i0st2sjxnjy" path="res://core/root.gd" id="1_xgk6v"]
-[ext_resource type="Texture2D" uid="uid://dihaja6kt0nwq" path="res://assets/2D Pixel Dungeon Asset Pack/character and tileset/Dungeon_Tileset.png" id="2_8uwbq"]
-[ext_resource type="Script" uid="uid://cu58jx0mqnhcj" path="res://tiles/definitions/crumbling_tile.gd" id="2_o46h6"]
-[ext_resource type="Script" uid="uid://ceemhrdund6ox" path="res://tiles/definitions/wall_tile.gd" id="2_v10a3"]
-[ext_resource type="Script" uid="uid://dq2wsjqtknxxf" path="res://tiles/definitions/conveyor_tile.gd" id="3_1sref"]
-[ext_resource type="Script" uid="uid://dv18uxcc1ampr" path="res://tiles/definitions/void_tile.gd" id="3_h1we1"]
-[ext_resource type="Script" uid="uid://dnoxfauu1lb25" path="res://core/board_controller.gd" id="3_xgk6v"]
-[ext_resource type="Script" uid="uid://dqdrn6qou437b" path="res://tiles/definitions/solid_tile.gd" id="4_o46h6"]
-[ext_resource type="PackedScene" uid="uid://cm3v41y2p75o5" path="res://entities/player.tscn" id="4_vjmbu"]
-[ext_resource type="Script" uid="uid://cynw2qj03t0qo" path="res://tiles/definitions/enabled_tile.gd" id="7_1sref"]
-[ext_resource type="Script" uid="uid://dv5omaa26vc7y" path="res://core/turn_manager.gd" id="7_h1we1"]
-[ext_resource type="Script" uid="uid://q33ea0tups0t" path="res://tiles/definitions/disabled_tile.gd" id="8_n3jy7"]
-[ext_resource type="PackedScene" uid="uid://dwfbnbq1681cp" path="res://pickups/key.tscn" id="13_7vaof"]
-[ext_resource type="PackedScene" uid="uid://clcsgxf2dph3t" path="res://tiles/scenes/exit_ladder.tscn" id="14_tg4cn"]
+[ext_resource type="Script" uid="uid://dqdrn6qou437b" path="res://tiles/definitions/solid_tile.gd" id="1_c85u1"]
+[ext_resource type="Script" uid="uid://dq2wsjqtknxxf" path="res://tiles/definitions/conveyor_tile.gd" id="2_t2o40"]
+[ext_resource type="Script" uid="uid://ceemhrdund6ox" path="res://tiles/definitions/wall_tile.gd" id="3_u1kpj"]
+[ext_resource type="Script" uid="uid://cu58jx0mqnhcj" path="res://tiles/definitions/crumbling_tile.gd" id="4_ia2rh"]
+[ext_resource type="Script" uid="uid://dv18uxcc1ampr" path="res://tiles/definitions/void_tile.gd" id="5_foiey"]
+[ext_resource type="Script" uid="uid://cynw2qj03t0qo" path="res://tiles/definitions/enabled_tile.gd" id="6_dfhqg"]
+[ext_resource type="Script" uid="uid://q33ea0tups0t" path="res://tiles/definitions/disabled_tile.gd" id="7_2cbsj"]
+[ext_resource type="Texture2D" uid="uid://dihaja6kt0nwq" path="res://assets/2D Pixel Dungeon Asset Pack/character and tileset/Dungeon_Tileset.png" id="8_bepcr"]
+[ext_resource type="PackedScene" uid="uid://dwfbnbq1681cp" path="res://pickups/key.tscn" id="9_htkuj"]
+[ext_resource type="PackedScene" uid="uid://clcsgxf2dph3t" path="res://tiles/scenes/exit_ladder.tscn" id="10_wjw12"]
+[ext_resource type="Script" uid="uid://dnoxfauu1lb25" path="res://core/board_controller.gd" id="11_afo01"]
+[ext_resource type="Script" uid="uid://dv5omaa26vc7y" path="res://core/turn_manager.gd" id="12_bmay6"]
+[ext_resource type="PackedScene" uid="uid://cm3v41y2p75o5" path="res://entities/player.tscn" id="13_rg6bf"]
 
 [sub_resource type="Resource" id="Resource_gn32c"]
-script = ExtResource("4_o46h6")
+script = ExtResource("1_c85u1")
 metadata/_custom_type_script = "uid://dqdrn6qou437b"
 
 [sub_resource type="Resource" id="Resource_sx8gt"]
-script = ExtResource("3_1sref")
+script = ExtResource("2_t2o40")
 metadata/_custom_type_script = "uid://dq2wsjqtknxxf"
 
 [sub_resource type="Resource" id="Resource_n3jy7"]
-script = ExtResource("2_v10a3")
+script = ExtResource("3_u1kpj")
 metadata/_custom_type_script = "uid://ceemhrdund6ox"
 
 [sub_resource type="Resource" id="Resource_c200x"]
-script = ExtResource("3_1sref")
+script = ExtResource("2_t2o40")
 metadata/_custom_type_script = "uid://dq2wsjqtknxxf"
 
 [sub_resource type="Resource" id="Resource_7vaof"]
-script = ExtResource("2_o46h6")
+script = ExtResource("4_ia2rh")
 metadata/_custom_type_script = "uid://cu58jx0mqnhcj"
 
 [sub_resource type="Resource" id="Resource_tg4cn"]
-script = ExtResource("3_h1we1")
+script = ExtResource("5_foiey")
 metadata/_custom_type_script = "uid://dv18uxcc1ampr"
 
 [sub_resource type="Resource" id="Resource_56ros"]
-script = ExtResource("7_1sref")
+script = ExtResource("6_dfhqg")
 metadata/_custom_type_script = "uid://cynw2qj03t0qo"
 
 [sub_resource type="Resource" id="Resource_cnci7"]
-script = ExtResource("8_n3jy7")
+script = ExtResource("7_2cbsj")
 metadata/_custom_type_script = "uid://q33ea0tups0t"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4uwrr"]
-texture = ExtResource("2_8uwbq")
+texture = ExtResource("8_bepcr")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -181,8 +180,7 @@ custom_data_layer_1/name = "direction"
 custom_data_layer_1/type = 6
 sources/0 = SubResource("TileSetAtlasSource_4uwrr")
 
-[node name="Root" type="Node2D"]
-script = ExtResource("1_xgk6v")
+[node name="LevelOne" type="Node2D"]
 
 [node name="Level" type="CanvasGroup" parent="."]
 metadata/_edit_group_ = true
@@ -192,22 +190,22 @@ metadata/_edit_lock_ = true
 tile_map_data = PackedByteArray("AAAHAAQAAAAKAAAAAAAHAAUAAAAKAAAAAAAHAAYAAAAKAAAAAAAHAAcAAAAKAAAAAAAIAAQAAAAKAAAAAAAIAAUAAAAKAAAAAAAIAAYAAAAKAAAAAAAIAAcAAAAKAAAAAAAJAAQAAAAKAAAAAAAJAAUAAAAKAAAAAAAJAAYAAAAKAAAAAAAJAAcAAAAKAAAAAAAKAAQAAAAKAAAAAAAKAAUAAAAKAAAAAAAKAAYAAAAKAAAAAAAKAAcAAAAKAAAAAAALAAQAAAAKAAAAAAALAAUAAAAKAAAAAAALAAYAAAAKAAAAAAALAAcAAAAKAAAAAAAEAAMAAAAKAAAAAAAEAAQAAAAKAAAAAAAEAAUAAAAKAAAAAAAEAAYAAAAKAAAAAAAEAAcAAAAKAAAAAAAEAAgAAAAKAAAAAAAFAAMAAAAKAAAAAAAFAAQAAAAKAAAAAAAFAAUAAAAKAAAAAAAFAAYAAAAKAAAAAAAFAAcAAAAKAAAAAAAFAAgAAAAKAAAAAAAGAAMAAAAKAAAAAAAGAAQAAAAMAAAAAAAGAAUAAAAMAAAAAAAGAAYAAAAMAAAAAAAGAAcAAAAKAAAAAAAGAAgAAAAKAAAAAAAHAAMAAAAKAAAAAAAHAAgAAAAKAAEAAAAIAAMAAAAKAAAAAAAIAAgAAAALAAEAAAAJAAMAAAAKAAAAAAAJAAgAAAAKAAAAAAAKAAMAAAAKAAAAAAAKAAgAAAAMAAAAAAALAAMAAAAKAAAAAAALAAgAAAAMAAAAAAAMAAMAAAAKAAAAAAAMAAQAAAANAAAAAAAMAAUAAAANAAAAAAAMAAYAAAANAAAAAAAMAAcAAAAKAAAAAAAMAAgAAAAMAAAAAAANAAMAAAAKAAAAAAANAAQAAAAKAAAAAAANAAUAAAAKAAAAAAANAAYAAAAKAAAAAAANAAcAAAAKAAAAAAANAAgAAAAKAAAAAAAOAAMAAAAKAAAAAAAOAAQAAAALAAAAAAAOAAUAAAAKAAAAAAAOAAYAAAAKAAAAAAAOAAcAAAAKAAAAAAAOAAgAAAAKAAAAAAAAAAAAAAALAAAAAAAAAAEAAAALAAAAAAAAAAIAAAALAAAAAAAAAAMAAAALAAAAAAAAAAQAAAALAAAAAAAAAAUAAAALAAAAAAAAAAYAAAALAAAAAAAAAAcAAAALAAAAAAAAAAgAAAALAAAAAAAAAAkAAAALAAAAAAAAAAoAAAALAAAAAAAAAAsAAAALAAAAAAABAAAAAAALAAAAAAABAAEAAAAKAAAAAAABAAIAAAAKAAAAAAABAAMAAAAKAAAAAAABAAQAAAAKAAAAAAABAAUAAAAKAAAAAAABAAYAAAAKAAAAAAABAAcAAAAKAAAAAAABAAgAAAAKAAAAAAABAAkAAAALAAAAAAABAAoAAAALAAAAAAABAAsAAAALAAAAAAACAAAAAAALAAAAAAACAAEAAAAKAAAAAAACAAIAAAALAAAAAAACAAMAAAALAAAAAAACAAQAAAAKAAAAAAACAAUAAAAKAAAAAAACAAYAAAAKAAAAAAACAAcAAAAKAAAAAAACAAgAAAAKAAAAAAACAAkAAAALAAAAAAACAAoAAAALAAAAAAACAAsAAAALAAAAAAADAAAAAAALAAAAAAADAAEAAAAKAAAAAAADAAIAAAALAAAAAAADAAMAAAALAAAAAAADAAQAAAAKAAAAAAADAAUAAAALAAAAAAADAAYAAAALAAAAAAADAAcAAAAKAAAAAAADAAgAAAAKAAAAAAADAAkAAAALAAAAAAADAAoAAAALAAAAAAADAAsAAAALAAAAAAAEAAAAAAALAAAAAAAEAAEAAAAKAAAAAAAEAAIAAAAKAAAAAAAEAAkAAAAKAAAAAAAEAAoAAAAKAAAAAAAEAAsAAAALAAAAAAAFAAAAAAALAAAAAAAFAAEAAAAKAAAAAAAFAAIAAAAKAAAAAAAFAAkAAAAKAAAAAAAFAAoAAAAKAAAAAAAFAAsAAAALAAAAAAAGAAAAAAALAAAAAAAGAAEAAAAKAAAAAAAGAAIAAAAOAAEAAAAGAAkAAAANAAEAAAAGAAoAAAAKAAAAAAAGAAsAAAALAAAAAAAHAAAAAAALAAAAAAAHAAEAAAAKAAAAAAAHAAIAAAAOAAEAAAAHAAkAAAAMAAEAAAAHAAoAAAAKAAAAAAAHAAsAAAALAAAAAAAIAAAAAAALAAAAAAAIAAEAAAAKAAAAAAAIAAIAAAAOAAAAAAAIAAkAAAAMAAEAAAAIAAoAAAALAAAAAAAIAAsAAAALAAAAAAAJAAAAAAALAAAAAAAJAAEAAAAKAAAAAAAJAAIAAAAOAAEAAAAJAAkAAAAKAAAAAAAJAAoAAAALAAAAAAAJAAsAAAALAAAAAAAKAAAAAAALAAAAAAAKAAEAAAAKAAAAAAAKAAIAAAAOAAAAAAAKAAkAAAAMAAAAAAAKAAoAAAALAAAAAAAKAAsAAAALAAAAAAALAAAAAAALAAAAAAALAAEAAAAKAAAAAAALAAIAAAAOAAEAAAALAAkAAAAMAAAAAAALAAoAAAAKAAAAAAALAAsAAAALAAAAAAAMAAAAAAALAAAAAAAMAAEAAAAKAAAAAAAMAAIAAAAOAAEAAAAMAAkAAAAMAAAAAAAMAAoAAAAKAAAAAAAMAAsAAAALAAAAAAANAAAAAAALAAAAAAANAAEAAAAKAAAAAAANAAIAAAAKAAAAAAANAAkAAAAKAAAAAAANAAoAAAAKAAAAAAANAAsAAAALAAAAAAAOAAAAAAALAAAAAAAOAAEAAAAKAAAAAAAOAAIAAAAKAAAAAAAOAAkAAAAKAAAAAAAOAAoAAAAKAAAAAAAOAAsAAAALAAAAAAAPAAAAAAALAAAAAAAPAAEAAAAKAAAAAAAPAAIAAAAKAAAAAAAPAAMAAAAKAAAAAAAPAAQAAAAKAAAAAAAPAAUAAAAKAAAAAAAPAAYAAAAKAAAAAAAPAAcAAAAKAAAAAAAPAAgAAAAKAAAAAAAPAAkAAAAKAAAAAAAPAAoAAAAKAAAAAAAPAAsAAAALAAAAAAAQAAAAAAALAAAAAAAQAAEAAAALAAAAAAAQAAIAAAAKAAAAAAAQAAMAAAAKAAAAAAAQAAQAAAAKAAAAAAAQAAUAAAAKAAAAAAAQAAYAAAALAAAAAAAQAAcAAAAKAAAAAAAQAAgAAAAKAAAAAAAQAAkAAAALAAAAAAAQAAoAAAALAAAAAAAQAAsAAAALAAAAAAARAAAAAAALAAAAAAARAAEAAAALAAAAAAARAAIAAAAKAAAAAAARAAMAAAAKAAAAAAARAAQAAAAKAAAAAAARAAUAAAAKAAAAAAARAAYAAAAKAAAAAAARAAcAAAAKAAAAAAARAAgAAAAKAAAAAAARAAkAAAAKAAAAAAARAAoAAAAKAAAAAAARAAsAAAALAAAAAAASAAAAAAALAAAAAAASAAEAAAAKAAAAAAASAAIAAAAKAAAAAAASAAMAAAAKAAAAAAASAAQAAAAKAAAAAAASAAUAAAAKAAAAAAASAAYAAAAKAAAAAAASAAcAAAAKAAAAAAASAAgAAAALAAAAAAASAAkAAAAKAAAAAAASAAoAAAAKAAAAAAASAAsAAAALAAAAAAATAAAAAAALAAAAAAATAAEAAAALAAAAAAATAAIAAAALAAAAAAATAAMAAAALAAAAAAATAAQAAAALAAAAAAATAAUAAAALAAAAAAATAAYAAAALAAAAAAATAAcAAAALAAAAAAATAAgAAAALAAAAAAATAAkAAAALAAAAAAATAAoAAAALAAAAAAATAAsAAAALAAAAAAA=")
 tile_set = SubResource("TileSet_oii04")
 
-[node name="Key" parent="Level" instance=ExtResource("13_7vaof")]
+[node name="Key" parent="Level" instance=ExtResource("9_htkuj")]
 position = Vector2(153, 88)
 
-[node name="ExitLadder" parent="Level" instance=ExtResource("14_tg4cn")]
+[node name="ExitLadder" parent="Level" instance=ExtResource("10_wjw12")]
 position = Vector2(184, 71)
 
 [node name="BoardController" type="Node" parent="." node_paths=PackedStringArray("floor_tilemap")]
-script = ExtResource("3_xgk6v")
+script = ExtResource("11_afo01")
 floor_tilemap = NodePath("../Level/Floor")
 
 [node name="TurnManager" type="Node" parent="." node_paths=PackedStringArray("player", "board")]
-script = ExtResource("7_h1we1")
+script = ExtResource("12_bmay6")
 player = NodePath("../Player")
 board = NodePath("../BoardController")
 
-[node name="Player" parent="." node_paths=PackedStringArray("board_controller", "turn_manager") instance=ExtResource("4_vjmbu")]
+[node name="Player" parent="." node_paths=PackedStringArray("board_controller", "turn_manager") instance=ExtResource("13_rg6bf")]
 position = Vector2(132, 114)
 board_controller = NodePath("../BoardController")
 turn_manager = NodePath("../TurnManager")

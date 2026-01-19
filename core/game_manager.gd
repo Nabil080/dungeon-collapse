@@ -8,3 +8,29 @@ var can_open_door: bool:
 	get: return has_key
 
 var score := 0
+
+# Levels
+var current_level := 0:
+	set = _set_current_level
+const LEVELS : Array[String] = [
+	"res://levels/level_one.tscn",
+	"res://levels/level_two.tscn",
+]
+
+
+func _ready() -> void:
+	_set_current_level.call_deferred(0)
+
+func _set_current_level(value: int) -> void:
+	var level_path : String = LEVELS.get(value)
+	if level_path:
+		current_level = value
+		get_tree().change_scene_to_file(LEVELS[value])
+
+func next_level() -> void:
+	var next_index := current_level + 1
+	if next_index >= LEVELS.size():
+		print("No more levels")
+		current_level = 0
+	else:
+		current_level += 1

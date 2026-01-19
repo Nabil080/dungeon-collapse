@@ -13,19 +13,25 @@ var score := 0
 var current_level := 0:
 	set = _set_current_level
 const LEVELS : Array[String] = [
-	"res://levels/level_one.tscn",
-	"res://levels/level_two.tscn",
+	"res://levels/level_solid.tscn",
+	"res://levels/level_crumble.tscn",
+	"res://levels/level_alternating.tscn",
+	"res://levels/level_conveyers.tscn",
+	"res://levels/test_level.tscn",
 ]
 
 
-func _ready() -> void:
-	_set_current_level.call_deferred(0)
+#func _ready() -> void:
+	#_set_current_level.call_deferred(0)
 
 func _set_current_level(value: int) -> void:
 	var level_path : String = LEVELS.get(value)
-	if level_path:
-		current_level = value
-		get_tree().change_scene_to_file(LEVELS[value])
+	if not level_path:
+		return
+	
+	current_level = value
+	has_key = false
+	get_tree().change_scene_to_file(LEVELS[value])
 
 func next_level() -> void:
 	var next_index := current_level + 1

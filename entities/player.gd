@@ -118,9 +118,10 @@ func _animate_move(target_position: Vector2, duration := 0.2) -> void:
 ## Called by tiles to request player death (logic only)
 func request_death() -> void:
 	death_requested = true
+	GameManager.has_key = false
 
 
-## Plays the appropriate death presentation
+## Plays the appropriate death (Only falling for now)
 func _play_death(animation_name := "falling") -> void:
 	dying.emit()
 	animation_player.play(animation_name)

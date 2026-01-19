@@ -180,7 +180,7 @@ custom_data_layer_1/name = "direction"
 custom_data_layer_1/type = 6
 sources/0 = SubResource("TileSetAtlasSource_4uwrr")
 
-[node name="LevelOne" type="Node2D"]
+[node name="Level" type="Node2D"]
 
 [node name="Level" type="CanvasGroup" parent="."]
 metadata/_edit_group_ = true

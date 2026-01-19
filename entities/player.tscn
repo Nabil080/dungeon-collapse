@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cm3v41y2p75o5"]
+[gd_scene load_steps=17 format=3 uid="uid://cm3v41y2p75o5"]
 
 [ext_resource type="Script" uid="uid://bw7oillukq22i" path="res://entities/player.gd" id="1_hg6s5"]
 [ext_resource type="Texture2D" uid="uid://bdkptqrnbyen5" path="res://assets/2D Pixel Dungeon Asset Pack/Character_animation/priests_idle/priest2/v1/priest2_v1_1.png" id="2_8t03j"]
@@ -46,33 +46,6 @@ animations = [{
 "name": &"selected",
 "speed": 5.0
 }]
-
-[sub_resource type="Animation" id="Animation_ef06p"]
-resource_name = "falling"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 12.566370614359172]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Visuals:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(0, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_tjdhl"]
 length = 0.001
@@ -123,6 +96,33 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ef06p"]
+resource_name = "falling"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 12.566370614359172]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_x08pd"]
@@ -192,6 +192,9 @@ _data = {
 &"moving": SubResource("Animation_dchgp")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ef06p"]
+size = Vector2(14, 14)
+
 [node name="Player" type="Node2D"]
 script = ExtResource("1_hg6s5")
 
@@ -207,3 +210,9 @@ libraries = {
 &"": SubResource("AnimationLibrary_tjdhl")
 }
 autoplay = "idle"
+
+[node name="PickupArea" type="Area2D" parent="." groups=["player"]]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
+shape = SubResource("RectangleShape2D_ef06p")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://dbb1d3iiut6tg"]
+[gd_scene load_steps=24 format=4 uid="uid://dbb1d3iiut6tg"]
 
 [ext_resource type="Script" uid="uid://c2i0st2sjxnjy" path="res://core/root.gd" id="1_xgk6v"]
 [ext_resource type="Texture2D" uid="uid://dihaja6kt0nwq" path="res://assets/2D Pixel Dungeon Asset Pack/character and tileset/Dungeon_Tileset.png" id="2_8uwbq"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://cynw2qj03t0qo" path="res://tiles/definitions/enabled_tile.gd" id="7_1sref"]
 [ext_resource type="Script" uid="uid://dv5omaa26vc7y" path="res://core/turn_manager.gd" id="7_h1we1"]
 [ext_resource type="Script" uid="uid://q33ea0tups0t" path="res://tiles/definitions/disabled_tile.gd" id="8_n3jy7"]
+[ext_resource type="PackedScene" uid="uid://dwfbnbq1681cp" path="res://pickups/key.tscn" id="13_7vaof"]
 
 [sub_resource type="Resource" id="Resource_gn32c"]
 script = ExtResource("4_o46h6")
@@ -203,3 +204,6 @@ board = NodePath("../BoardController")
 position = Vector2(132, 114)
 board_controller = NodePath("../BoardController")
 turn_manager = NodePath("../TurnManager")
+
+[node name="Key" parent="." instance=ExtResource("13_7vaof")]
+position = Vector2(153, 88)

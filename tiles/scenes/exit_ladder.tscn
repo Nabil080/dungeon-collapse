@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://clcsgxf2dph3t"]
+
+[ext_resource type="Script" uid="uid://d04hro6g88tba" path="res://tiles/scenes/exit_ladder.gd" id="1_4ssst"]
+[ext_resource type="Texture2D" uid="uid://dihaja6kt0nwq" path="res://assets/2D Pixel Dungeon Asset Pack/character and tileset/Dungeon_Tileset.png" id="1_715iq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ssst"]
+atlas = ExtResource("1_715iq")
+region = Rect2(144, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5otg4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ssst")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_715iq"]
+size = Vector2(14, 14)
+
+[node name="ExitLadder" type="Area2D"]
+script = ExtResource("1_4ssst")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5otg4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_715iq")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -1,12 +1,15 @@
-[gd_resource type="TileSet" load_steps=21 format=3 uid="uid://7us2y17e15l4"]
+[gd_resource type="TileSet" load_steps=27 format=3 uid="uid://7us2y17e15l4"]
 
 [ext_resource type="Script" uid="uid://dqdrn6qou437b" path="res://tiles/definitions/solid_tile.gd" id="1_f7qs4"]
 [ext_resource type="Script" uid="uid://dq2wsjqtknxxf" path="res://tiles/definitions/conveyor_tile.gd" id="2_obf5o"]
+[ext_resource type="Script" uid="uid://4vfoss28ke2f" path="res://tiles/definitions/button/button_tile.gd" id="3_ork2v"]
 [ext_resource type="Script" uid="uid://ceemhrdund6ox" path="res://tiles/definitions/wall_tile.gd" id="3_qubbs"]
 [ext_resource type="Script" uid="uid://cu58jx0mqnhcj" path="res://tiles/definitions/crumbling_tile.gd" id="4_ork2v"]
+[ext_resource type="Script" uid="uid://b08bfcbt6n51u" path="res://tiles/definitions/button/disabled_tile.gd" id="5_obf5o"]
 [ext_resource type="Script" uid="uid://dv18uxcc1ampr" path="res://tiles/definitions/void_tile.gd" id="5_wftvc"]
-[ext_resource type="Script" uid="uid://cynw2qj03t0qo" path="res://tiles/definitions/enabled_tile.gd" id="6_hdoar"]
-[ext_resource type="Script" uid="uid://q33ea0tups0t" path="res://tiles/definitions/disabled_tile.gd" id="7_8x6pc"]
+[ext_resource type="Script" uid="uid://cynw2qj03t0qo" path="res://tiles/definitions/alternating/enabled_tile.gd" id="6_gkhn5"]
+[ext_resource type="Script" uid="uid://br6v5ayitv87v" path="res://tiles/definitions/button/enabled_tile.gd" id="6_qubbs"]
+[ext_resource type="Script" uid="uid://q33ea0tups0t" path="res://tiles/definitions/alternating/disabled_tile.gd" id="7_f7qs4"]
 [ext_resource type="Texture2D" uid="uid://dihaja6kt0nwq" path="res://assets/2D Pixel Dungeon Asset Pack/character and tileset/Dungeon_Tileset.png" id="8_judgp"]
 [ext_resource type="PackedScene" uid="uid://dwfbnbq1681cp" path="res://pickups/key.tscn" id="9_e3rn6"]
 [ext_resource type="PackedScene" uid="uid://clcsgxf2dph3t" path="res://tiles/scenes/exit_ladder.tscn" id="10_lb82r"]
@@ -19,6 +22,10 @@ metadata/_custom_type_script = "uid://dqdrn6qou437b"
 script = ExtResource("2_obf5o")
 metadata/_custom_type_script = "uid://dq2wsjqtknxxf"
 
+[sub_resource type="Resource" id="Resource_wftvc"]
+script = ExtResource("3_ork2v")
+metadata/_custom_type_script = "uid://4vfoss28ke2f"
+
 [sub_resource type="Resource" id="Resource_n3jy7"]
 script = ExtResource("3_qubbs")
 metadata/_custom_type_script = "uid://ceemhrdund6ox"
@@ -27,20 +34,28 @@ metadata/_custom_type_script = "uid://ceemhrdund6ox"
 script = ExtResource("2_obf5o")
 metadata/_custom_type_script = "uid://dq2wsjqtknxxf"
 
+[sub_resource type="Resource" id="Resource_hdoar"]
+script = ExtResource("5_obf5o")
+metadata/_custom_type_script = "uid://b08bfcbt6n51u"
+
 [sub_resource type="Resource" id="Resource_7vaof"]
 script = ExtResource("4_ork2v")
 metadata/_custom_type_script = "uid://cu58jx0mqnhcj"
+
+[sub_resource type="Resource" id="Resource_8x6pc"]
+script = ExtResource("6_qubbs")
+metadata/_custom_type_script = "uid://br6v5ayitv87v"
 
 [sub_resource type="Resource" id="Resource_tg4cn"]
 script = ExtResource("5_wftvc")
 metadata/_custom_type_script = "uid://dv18uxcc1ampr"
 
 [sub_resource type="Resource" id="Resource_56ros"]
-script = ExtResource("6_hdoar")
+script = ExtResource("6_gkhn5")
 metadata/_custom_type_script = "uid://cynw2qj03t0qo"
 
 [sub_resource type="Resource" id="Resource_cnci7"]
-script = ExtResource("7_8x6pc")
+script = ExtResource("7_f7qs4")
 metadata/_custom_type_script = "uid://q33ea0tups0t"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4uwrr"]
@@ -169,6 +184,12 @@ texture = ExtResource("8_judgp")
 7:9/0 = 0
 8:9/0 = 0
 9:9/0 = 0
+10:2/0 = 0
+10:2/0/custom_data_0 = SubResource("Resource_wftvc")
+11:2/0 = 0
+11:2/0/custom_data_0 = SubResource("Resource_hdoar")
+12:2/0 = 0
+12:2/0/custom_data_0 = SubResource("Resource_8x6pc")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_c85u1"]
 resource_name = "Scenes"

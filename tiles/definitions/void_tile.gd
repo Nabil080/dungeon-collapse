@@ -8,5 +8,6 @@ func _init() -> void:
 
 ## Requests death when entered
 func on_enter(actor: Node, _board: BoardController, _cell: Vector2i) -> void:
+	print("Void tile")
 	if actor.has_method("request_death"):
 		actor.call("request_death")

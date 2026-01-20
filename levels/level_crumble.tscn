@@ -16,7 +16,7 @@ tile_map_data = PackedByteArray("AAAAAAAAAAALAAAAAAAAAAEAAAALAAAAAAAAAAIAAAALAAA
 tile_set = ExtResource("1_0yb4b")
 
 [node name="Objects" type="TileMapLayer" parent="Level"]
-tile_map_data = PackedByteArray("AAADAAEAAQAAAAAAAgAFAAEAAQAAAAAAAQA=")
+tile_map_data = PackedByteArray("AAADAAEAAQAAAAAAAgAFAAEAAQAAAAAAAQABAAEAAAAIAAMAAAA=")
 tile_set = ExtResource("1_0yb4b")
 
 [node name="Player" parent="." node_paths=PackedStringArray("board_controller", "turn_manager") instance=ExtResource("2_d3kqa")]
@@ -32,6 +32,3 @@ floor_tilemap = NodePath("../Level/Floor")
 script = ExtResource("4_ryytm")
 player = NodePath("../Player")
 board = NodePath("../BoardController")
-
-[connection signal="area_entered" from="Level/Objects/ExitLadder" to="Level/Objects/ExitLadder" method="_on_area_entered"]
-[connection signal="area_entered" from="Level/Objects/Key" to="Level/Objects/Key" method="_on_area_entered"]

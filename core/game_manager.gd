@@ -17,12 +17,13 @@ const LEVELS : Array[String] = [
 	"res://levels/level_crumble.tscn",
 	"res://levels/level_alternating.tscn",
 	"res://levels/level_conveyers.tscn",
+	"res://levels/level_button.tscn",
 	"res://levels/test_level.tscn",
 ]
 
 
-#func _ready() -> void:
-	#_set_current_level.call_deferred(0)
+func _ready() -> void:
+	_set_current_level.call_deferred(0)
 
 func _set_current_level(value: int) -> void:
 	var level_path : String = LEVELS.get(value)

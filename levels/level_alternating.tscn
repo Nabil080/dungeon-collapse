@@ -16,7 +16,7 @@ tile_map_data = PackedByteArray("AAAAAAAAAAALAAAAAAAAAAEAAAALAAAAAAAAAAIAAAALAAA
 tile_set = ExtResource("1_ikojo")
 
 [node name="Objects" type="TileMapLayer" parent="Level"]
-tile_map_data = PackedByteArray("AAADAAEAAQAAAAAAAgAFAAEAAQAAAAAAAQA=")
+tile_map_data = PackedByteArray("AAADAAEAAQAAAAAAAgAFAAEAAQAAAAAAAQABAAEAAAAIAAMAAAA=")
 tile_set = ExtResource("1_ikojo")
 
 [node name="Player" parent="." node_paths=PackedStringArray("board_controller", "turn_manager") instance=ExtResource("13_jjuep")]

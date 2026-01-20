@@ -70,7 +70,6 @@ func start_of_turn() -> void:
 		var tile_def : = get_tile_def(cell)
 		if tile_def is EnabledTile: change_tile(cell, TileDefinition.get_atlas_coords(TileDefinition.Type.DISABLED))
 		elif tile_def is DisabledTile: change_tile(cell, TileDefinition.get_atlas_coords(TileDefinition.Type.ENABLED))
-	print("Done 1")
 
 
 ## Called once per action
@@ -110,5 +109,11 @@ func change_tile(cell: Vector2i, atlas_coords: Vector2i) -> void:
 
 func request_forced_move(movement: ConveyorTile.Movement) -> void:
 	forced_moves.append(movement)
+
+func request_button(_cell: Vector2i) -> void:
+	for cell in floor_tilemap.get_used_cells():
+		var tile_def : = get_tile_def(cell)
+		if tile_def is ButtonEnabledTile: change_tile(cell, TileDefinition.get_atlas_coords(TileDefinition.Type.BUTTON_DISABLED))
+		elif tile_def is ButtonDisabledTile: change_tile(cell, TileDefinition.get_atlas_coords(TileDefinition.Type.BUTTON_ENABLED))
 
 #endregion

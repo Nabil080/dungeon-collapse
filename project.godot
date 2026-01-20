@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Dungeon Collapse"
-run/main_scene="uid://dbb1d3iiut6tg"
+run/main_scene="uid://dwt70uqo7qwg6"
 config/features=PackedStringArray("4.5", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://bdkptqrnbyen5"
+
+[autoload]
+
+GameManager="*res://core/game_manager.gd"
 
 [debug]
 
@@ -27,15 +31,20 @@ gdscript/warnings/unsafe_call_argument=1
 
 window/size/viewport_width=320
 window/size/viewport_height=192
-window/stretch/mode="viewport"
+window/size/window_width_override=1280
+window/size/window_height_override=720
+window/stretch/mode="canvas_items"
 
 [file_customization]
 
 folder_colors={
 "res://assets/": "blue",
-"res://characters/": "purple",
 "res://core/": "gray"
 }
+
+[global_group]
+
+player=""
 
 [input]
 

@@ -7,11 +7,11 @@
 [ext_resource type="Script" uid="uid://cu58jx0mqnhcj" path="res://tiles/definitions/crumbling_tile.gd" id="4_ork2v"]
 [ext_resource type="Script" uid="uid://b08bfcbt6n51u" path="res://tiles/definitions/button/disabled_tile.gd" id="5_obf5o"]
 [ext_resource type="Script" uid="uid://dv18uxcc1ampr" path="res://tiles/definitions/void_tile.gd" id="5_wftvc"]
-[ext_resource type="Script" uid="uid://cynw2qj03t0qo" path="res://tiles/definitions/alternating/enabled_tile.gd" id="6_gkhn5"]
 [ext_resource type="Script" uid="uid://br6v5ayitv87v" path="res://tiles/definitions/button/enabled_tile.gd" id="6_qubbs"]
 [ext_resource type="Script" uid="uid://q33ea0tups0t" path="res://tiles/definitions/alternating/disabled_tile.gd" id="7_f7qs4"]
 [ext_resource type="Texture2D" uid="uid://dihaja6kt0nwq" path="res://assets/2D Pixel Dungeon Asset Pack/character and tileset/Dungeon_Tileset.png" id="8_judgp"]
 [ext_resource type="PackedScene" uid="uid://dwfbnbq1681cp" path="res://pickups/key.tscn" id="9_e3rn6"]
+[ext_resource type="Script" uid="uid://cynw2qj03t0qo" path="res://tiles/definitions/alternating/enabled_tile.gd" id="9_qubbs"]
 [ext_resource type="PackedScene" uid="uid://clcsgxf2dph3t" path="res://tiles/scenes/exit_ladder.tscn" id="10_lb82r"]
 
 [sub_resource type="Resource" id="Resource_gn32c"]
@@ -51,7 +51,7 @@ script = ExtResource("5_wftvc")
 metadata/_custom_type_script = "uid://dv18uxcc1ampr"
 
 [sub_resource type="Resource" id="Resource_56ros"]
-script = ExtResource("6_gkhn5")
+script = ExtResource("9_qubbs")
 metadata/_custom_type_script = "uid://cynw2qj03t0qo"
 
 [sub_resource type="Resource" id="Resource_cnci7"]

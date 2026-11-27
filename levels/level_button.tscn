@@ -32,6 +32,3 @@ floor_tilemap = NodePath("../Level/Floor")
 script = ExtResource("4_cpvit")
 player = NodePath("../Player")
 board = NodePath("../BoardController")
-
-[connection signal="area_entered" from="Level/Objects/@Area2D@40510" to="Level/Objects/@Area2D@40510" method="_on_area_entered"]
-[connection signal="area_entered" from="Level/Objects/ExitLadder" to="Level/Objects/ExitLadder" method="_on_area_entered"]

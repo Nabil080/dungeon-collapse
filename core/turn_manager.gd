@@ -1,25 +1,23 @@
 class_name TurnManager
 extends Node
 
-## Turn State Machine
-# PLAYER_TURN
-# PLAYER_RESOLVING
-# ENVIRONMENT_RESOLVING
-# ENEMY_TURN
-# PAUSED
+## The player can only act during PLAYER_TURN. A move switches to
+## PLAYER_RESOLVING until its animation is over, so inputs pressed
+## in the meantime are ignored.
+## ENVIRONMENT_RESOLVING and ENEMY_TURN were planned for enemies and never used.
 
 enum States {
 	PLAYER_TURN,
 	PLAYER_RESOLVING,
 	ENVIRONMENT_RESOLVING,
 	ENEMY_TURN,
-	PAUSED
+	PAUSED,
 }
 
 @export var player: Player
 @export var board: BoardController
 
-var state: States = States.PLAYER_TURN : set = _enter_state
+var state: States = States.PLAYER_TURN
 
 
 func _ready() -> void:
@@ -28,38 +26,15 @@ func _ready() -> void:
 
 	player.action_started.connect(_on_player_action_started)
 	player.action_resolved.connect(_on_player_action_resolved)
-	player.dying.connect(func ()->void: state = States.PAUSED)
-	player.died.connect(func ()->void: get_tree().reload_current_scene())
+	player.dying.connect(func() -> void: state = States.PAUSED)
+	player.died.connect(func() -> void: get_tree().reload_current_scene())
 
 
-## Player action started
 func _on_player_action_started() -> void:
 	if state == States.PLAYER_TURN:
 		state = States.PLAYER_RESOLVING
 
 
-## Player action finished (logic + animation)
 func _on_player_action_resolved() -> void:
 	if state == States.PLAYER_RESOLVING:
 		state = States.PLAYER_TURN
-
-
-func _enter_state(value: States) -> void:
-	print(States.find_key(value), " Started")
-	state = value
-	match state:
-
-		States.PLAYER_TURN:
-			pass
-
-		States.PLAYER_RESOLVING:
-			pass
-
-		States.ENVIRONMENT_RESOLVING:
-			pass
-
-		States.ENEMY_TURN:
-			pass
-
-		States.PAUSED:
-			pass # Death / pause

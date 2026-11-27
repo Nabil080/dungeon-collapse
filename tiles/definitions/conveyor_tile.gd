@@ -1,15 +1,18 @@
 class_name ConveyorTile
 extends TileDefinition
 
+## Pushes the actor one more cell, in the direction stored in the
+## tile's "direction" custom data.
+
 class Movement:
 	var actor: Node
 	var direction: Vector2i
 
+
 func _init() -> void:
-	walkable = true # stepping on it is allowed
+	walkable = true
 
 
-## Requests death when entered
 func on_enter(actor: Node, board: BoardController, cell: Vector2i) -> void:
 	var movement := Movement.new()
 	movement.actor = actor
